@@ -20,6 +20,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     private TextView mTextViewStepCount;
     private TextView mTextViewStepDetect;
     private TextView mTextViewHeart;
+    private TextView mRelativeHumidity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                 mTextViewStepCount = (TextView) stub.findViewById(R.id.step_count);
                 mTextViewStepDetect = (TextView) stub.findViewById(R.id.step_detect);
                 mTextViewHeart = (TextView) stub.findViewById(R.id.heart);
+                mRelativeHumidity = (TextView) stub.findViewById(R.id.Relative_Humidity);
                 getStepCount();
             }
         });
@@ -47,10 +49,12 @@ public class MainActivity extends Activity implements SensorEventListener {
         Sensor mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
         Sensor mStepCountSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         Sensor mStepDetectSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+        Sensor mRelativeHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
         mSensorManager.registerListener(this, mHeartRateSensor, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mStepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mStepDetectSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mRelativeHumidity, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     private String currentTimeStr() {
@@ -65,17 +69,22 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_HEART_RATE) {
-            String msg = "" + (int)event.values[0];
+            String msg = "Heart Rate: " + (int)event.values[0];
             mTextViewHeart.setText(msg);
             Log.d(TAG, msg);
         }
+        else if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY){
+            String msg = "Humidity: " + (int)event.values[0];
+            mTextViewStepCount.setText(msg);
+            Log.d(TAG, msg);
+        }
         else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            String msg = "Count: " + (int)event.values[0];
+            String msg = "Steps Made: " + (int)event.values[0];
             mTextViewStepCount.setText(msg);
             Log.d(TAG, msg);
         }
         else if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
-            String msg = "Detected at " + currentTimeStr();
+            String msg = "Steps Detected at " + currentTimeStr();
             mTextViewStepDetect.setText(msg);
             Log.d(TAG, msg);
         }
