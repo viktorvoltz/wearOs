@@ -13,19 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/hello_world" />
+        android:text="ReelFit Health" />
 
     <TextView
         android:id="@+id/step_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_below="@id/text"
         android:text="@string/hello_world" />
 
     <TextView
         android:id="@+id/step_detect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/step_count"
         android:layout_centerInParent="true"
         android:text="@string/hello_world" />
 
@@ -33,18 +35,19 @@
         android:id="@+id/heart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/step_detect"
         android:layout_centerInParent="true"
         android:text="@string/hello_world" />
 
-    <Button
-        android:id="@+id/buttonx"
+    <TextView
+        android:id="@+id/Relative_Humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text"
-        android:text="welcome"
-        android:onClick="onclickbttn"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@id/heart"
+        android:layout_centerInParent="true"
+        android:text="@string/hello_world" />
+
+
 
 
 </RelativeLayout>
