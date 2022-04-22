@@ -20,7 +20,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     private TextView mTextViewStepCount;
     private TextView mTextViewStepDetect;
     private TextView mTextViewHeart;
-    private TextView mRelativeHumidity;
+    private TextView mPressure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +38,24 @@ public class MainActivity extends Activity implements SensorEventListener {
                 mTextViewStepCount = (TextView) stub.findViewById(R.id.step_count);
                 mTextViewStepDetect = (TextView) stub.findViewById(R.id.step_detect);
                 mTextViewHeart = (TextView) stub.findViewById(R.id.heart);
-                mRelativeHumidity = (TextView) stub.findViewById(R.id.Relative_Humidity);
+                mPressure = (TextView) stub.findViewById(R.id.Relative_Humidity);
                 getStepCount();
             }
         });
     }
+
 
     private void getStepCount() {
         SensorManager mSensorManager = ((SensorManager)getSystemService(SENSOR_SERVICE));
         Sensor mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
         Sensor mStepCountSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         Sensor mStepDetectSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        Sensor mRelativeHumidity = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        Sensor mPressureSenSor = mSensorManager.getDefaultSensor(Sensor.TYPE_ALL);
 
         mSensorManager.registerListener(this, mHeartRateSensor, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mStepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mStepDetectSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mRelativeHumidity, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mPressureSenSor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     private String currentTimeStr() {
@@ -67,15 +68,16 @@ public class MainActivity extends Activity implements SensorEventListener {
         Log.d(TAG, "onAccuracyChanged - accuracy: " + accuracy);
     }
 
+
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_HEART_RATE) {
             String msg = "Heart Rate: " + (int)event.values[0];
             mTextViewHeart.setText(msg);
             Log.d(TAG, msg);
         }
-        else if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY){
-            String msg = "Humidity: " + (int)event.values[0];
-            mTextViewStepCount.setText(msg);
+        else if (event.sensor.getType() == Sensor.TYPE_ALL){
+            String msg = "ALL: " + (int)event.values[0];
+            mPressure.setText(msg);
             Log.d(TAG, msg);
         }
         else if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
