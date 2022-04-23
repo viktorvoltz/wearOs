@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         Sensor mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
         Sensor mStepCountSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         Sensor mStepDetectSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        Sensor mPressureSenSor = mSensorManager.getDefaultSensor(Sensor.TYPE_ALL);
+        Sensor mPressureSenSor = mSensorManager.getDefaultSensor(Sensor.TYPE_SIGNIFICANT_MOTION);
 
         mSensorManager.registerListener(this, mHeartRateSensor, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mStepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
@@ -75,8 +75,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             mTextViewHeart.setText(msg);
             Log.d(TAG, msg);
         }
-        else if (event.sensor.getType() == Sensor.TYPE_ALL){
-            String msg = "ALL: " + (int)event.values[0];
+        else if (event.sensor.getType() == Sensor.TYPE_SIGNIFICANT_MOTION){
+            String msg = "Motion: " + (int)event.values[0];
             mPressure.setText(msg);
             Log.d(TAG, msg);
         }
