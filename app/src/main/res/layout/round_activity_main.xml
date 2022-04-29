@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="ReelFit Health" />
+        android:text="Health by Viktorvoltz" />
 
     <TextView
         android:id="@+id/step_count"
