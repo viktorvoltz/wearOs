@@ -91,9 +91,9 @@ public class MainActivity extends Activity implements SensorEventListener {
                     //set Current latitude and longitude
                     currentLon=loc.getLongitude();
                     currentLat=loc.getLatitude();
-                    Log.d(TAG, "onLayoutInflated: " + currentLon);
-                    Log.d(TAG, "onLayoutInflated: " + currentLat);
-                    display.setText("cLON" + currentLon);
+                    Log.d(TAG, "Longitude: " + currentLon);
+                    Log.d(TAG, "Latitude: " + currentLat);
+                    display.setText("Long" + currentLon);
 
 
                 }
