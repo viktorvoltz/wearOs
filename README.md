@@ -8,4 +8,14 @@ The [Health Services](https://developer.android.com/training/wearables/health-se
 
 This app targets the hardware sensors to read vital data. It also uses GPS 🛰 to get location and track distance.
 
+> heart rate.
+> 
+> step count.
+> 
+> motion detection.
+> 
+> current satelite location.
+> 
+> calculated distance from point to point.
+
 <img src=https://user-images.githubusercontent.com/45709308/165913546-f70e2d5b-f7e3-4930-b99f-82c89c84adc8.jpg height=40% width=40%>
